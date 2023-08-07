@@ -1,0 +1,9 @@
+V-BRN-K30-DC01;R;qnap-iscsi-2;iscsi.nas2.000000
+V-BRN-K30-DC01;E;qnap-iscsi-3;iscsi.nas3.211c9d
+V-BRN-K30-DC01;P;qnap-iscsi-5;iscsi.16tb01.3a391f
+V-BRN-K30-DC01;Q;qnap-iscsi-5;iscsi.16tb01.3a391f
+V-BRN-K30-DC01;S;qnap-iscsi-5;iscsi.tb16r1n1.3a391f
+V-BRN-K30-DC02;P;qnap-iscsi-5;iscsi.16tb02.3a391f
+V-BRN-K30-DC02;E;qnap-iscsi-1;ts-859uplus:iscsi.nas1.cb9d4c
+V-BRN-K10-DC01;S;qnap-iscsi-4;iscsi.16tb01.3c8195
+V-BRN-K10-DC01;E;qnap-iscsi-4;iscsi.tb16r1n41.3c8195
