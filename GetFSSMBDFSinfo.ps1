@@ -1,3 +1,8 @@
+
+param(
+    [Parameter(Mandatory=$true)][string]   $iSCSIlist
+); 
+
 Class CiSCSIDict {
 	[String] $ServerName;
 	[String] $DriveName;
@@ -41,14 +46,22 @@ Class COutInfo {
 }
 
 [System.Collections.ArrayList]$iSCSIDict = New-Object System.Collections.ArrayList($null);
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'R', 'qnap-iscsi-2', 'iscsi.nas2.000000'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'E', 'qnap-iscsi-3', 'iscsi.nas3.211c9d'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'P', 'qnap-iscsi-5', 'iscsi.16tb01.3a391f'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'Q', 'qnap-iscsi-5', 'iscsi.16tb01.3a391f'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'S', 'qnap-iscsi-5', 'iscsi.tb16r1n1.3a391f'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC02', 'P', 'qnap-iscsi-5', 'iscsi.16tb02.3a391f'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC02', 'E', 'qnap-iscsi-1', 'ts-859uplus:iscsi.nas1.cb9d4c'));
-$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K10-DC01', 'S', 'qnap-iscsi-4', 'iscsi.16tb01.3c8195'));
+Import-Csv -Delimiter ';' -Encoding Default -Path $iSCSIlist |  %{
+	$iSCSIDict.Add([CiSCSIDict]::new($_.computername, $_.DriveName, $_.iSCSI, $_.target)) | Out-Null;
+
+}
+
+<#
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'R', 'qnap-iscsi-2', 'iscsi.nas2.000000')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'E', 'qnap-iscsi-3', 'iscsi.nas3.211c9d')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'P', 'qnap-iscsi-5', 'iscsi.16tb01.3a391f')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'Q', 'qnap-iscsi-5', 'iscsi.16tb01.3a391f')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC01', 'S', 'qnap-iscsi-5', 'iscsi.tb16r1n1.3a391f')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC02', 'P', 'qnap-iscsi-5', 'iscsi.16tb02.3a391f')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K30-DC02', 'E', 'qnap-iscsi-1', 'ts-859uplus:iscsi.nas1.cb9d4c')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K10-DC01', 'S', 'qnap-iscsi-4', 'iscsi.16tb01.3c8195')) | Out-Null;
+$iSCSIDict.Add([CiSCSIDict]::new('V-BRN-K10-DC01', 'E', 'qnap-iscsi-4', 'iscsi.tb16r1n41.3c8195')) | Out-Null;
+#> 
 
 Get-DfsnRoot -ErrorAction SilentlyContinue |
     Where-Object -Property type -like 'Domain v2'|
