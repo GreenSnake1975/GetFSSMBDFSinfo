@@ -1,3 +1,4 @@
+computername;DriveName;iSCSI;target
 V-BRN-K30-DC01;R;qnap-iscsi-2;iscsi.nas2.000000
 V-BRN-K30-DC01;E;qnap-iscsi-3;iscsi.nas3.211c9d
 V-BRN-K30-DC01;P;qnap-iscsi-5;iscsi.16tb01.3a391f
